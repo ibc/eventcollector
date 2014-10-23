@@ -1,0 +1,23 @@
+{
+  "name": "eventcollector",
+  "version": "0.1.1",
+  "description": "Node/JavaScript library for collecting multiple events into a single one.",
+  "author": "Iñaki Baz Castillo <ibc@aliax.net>",
+  "license": "MIT",
+  "main": "build/eventcollector.bundle.js",
+  "keywords": [
+    "event"
+  ],
+  "homepage": "https://github.com/ibc/eventcollector",
+  "ignore": [
+    ".git",
+    ".gitignore",
+    ".npmignore",
+    "node_modules",
+    "npm-debug.log",
+    "test",
+    "lib",
+    "Gruntfile.js",
+    "package.json"
+  ]
+}

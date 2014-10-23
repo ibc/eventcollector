@@ -1,11 +1,14 @@
 module.exports = function(grunt) {
   var files = {
     gruntfile: [ 'Gruntfile.js' ],
-    lib:       [ 'lib/**/*.js' ],
+    lib:       [ 'lib/**/*.js'  ],
     test:      [ 'test/**/*.js' ],
   };
 
   var pkg = grunt.file.readJSON('package.json');
+  var bundle_files = {};
+
+  bundle_files['build/' + pkg.name + '.bundle.js'] = [ pkg.main ];
 
   grunt.initConfig({
     jshint: {
@@ -27,7 +30,7 @@ module.exports = function(grunt) {
         undef: true,
         unused: true,
         strict: false,
-        // TODO validthis: true,  // Allow 'this' in a non-constructor function.
+        validthis: true,  // Allow 'this' in a non-constructor function.
         node: true,
         globals: {}
       },
@@ -35,10 +38,22 @@ module.exports = function(grunt) {
       lib:     files.lib,
       test:    files.test
     },
+
+    browserify: {
+      bundle: {
+        files: bundle_files,
+        options: {
+          browserifyOptions: {
+            standalone: pkg.name
+          }
+        }
+      }
+    }
   });
 
   // Load Grunt plugins.
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-browserify');
 
   // Tasks.
   grunt.registerTask('test', function() {
@@ -57,5 +72,5 @@ module.exports = function(grunt) {
     });
   });
   grunt.registerTask('lint',    [ 'jshint' ]);
-  grunt.registerTask('default', [ 'lint', 'test' ]);
+  grunt.registerTask('default', [ 'lint', 'test', 'browserify' ]);
 };
