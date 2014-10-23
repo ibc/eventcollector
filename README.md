@@ -141,13 +141,11 @@ Emitted if the given timeout expires before all the required events have fired.
 
 *IMPORTANT:* New 'done' events after the timeout will still be emitted unless the user calls `destroy()`.
 
-#### Event 'error'
-
-Emitted in case of error. For example, when expecting 2 events and calling `done()` more than twice.
-* param `{Error}` **error**
-
 
 ## Release History
+
+### 0.1.3 (2014-10-24)
+* Remove 'error' event by ensuring `done()` is ignored once all the required events have been emitted.
 
 ### 0.1.2 (2014-10-23)
 * Complete documentation.

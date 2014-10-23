@@ -41,17 +41,6 @@ var EVENT_ALLDONE = 'alldone';
 var EVENT_TIMEOUT = 'timeout';
 
 
-/**
- * Emitted in case of error. For example, when expecting 2 events and calling
- * `done()` more than 2 times.
- *
- * @event error
- * @param {Error} error
- */
-
-var EVENT_ERROR = 'error';
-
-
 function isPositiveInteger(x) {
   return (typeof x === 'number') && (x % 1 === 0) && (x > 0);
 }
@@ -102,15 +91,16 @@ EventCollector.prototype.done = function(data) {
 
   this.fired++;
 
-  if (this.fired > this.total) {
-    this.emit(EVENT_ERROR, new Error('`done` called more times than required'));
+  try {
+    this.emit(EVENT_DONE, this.fired, this.total, data);
+
+    if (this.fired === this.total) {
+      this.destroy();
+      this.emit(EVENT_ALLDONE, this.total);
+    }
   }
-
-  this.emit(EVENT_DONE, this.fired, this.total, data);
-
-  if (this.fired === this.total) {
-    clearTimeout(this.timer);
-    this.emit(EVENT_ALLDONE, this.total);
+  catch(error) {
+    throw error;
   }
 
   return this;

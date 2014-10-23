@@ -76,33 +76,6 @@ module.exports = {
     });
   },
 
-  'expect 1 fire 2 emit error': function(test) {
-    test.expect(4);
-    var ec = eventcollector_fn(1);
-
-    ec.once('done', function(fired, total, data) {
-      test.equal(1, fired);
-      test.equal(1, total);
-      test.equal(data, 'event1');
-    });
-
-    ec.once('error', function() {
-      test.done();
-    });
-
-    ec.on('alldone', function(total) {
-      test.equal(1, total);
-    });
-
-    process.nextTick(function() {
-      ec.done('event1');
-    });
-
-    process.nextTick(function() {
-      ec.done('event2');
-    });
-  },
-
   'timeout expires': function(test) {
     test.expect(2);
     var ec = eventcollector_fn(1, 50);
@@ -114,7 +87,7 @@ module.exports = {
     });
   },
 
-  'dont emit after destroy': function(test) {
+  'don\'t emit after destroy': function(test) {
     test.expect(0);
     var ec = eventcollector_fn(1, 100);
 
