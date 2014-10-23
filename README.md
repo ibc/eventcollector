@@ -18,7 +18,7 @@ $ npm install eventcollector
 $ bower install eventcollector
 ```
 
-## Manual installaion for browser apps
+## Manual installation for browser apps
 
 Take the browserified file at `build/eventcollector.bundle.js` and include it in your HTML:
 
