@@ -1,6 +1,6 @@
 {
   "name": "eventcollector",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node/JavaScript library for collecting multiple events into a single one.",
   "author": "Iñaki Baz Castillo <ibc@aliax.net>",
   "license": "MIT",

@@ -108,28 +108,30 @@ Returns an instance of `EventCollector`.
 
 ### Class `EventCollector`
 
-### Method `done(data)`
+The main class. It is an [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
+
+#### Method `done(data)`
 
 Tell the `EventCollector` instance that an event has been emitted.
 * param `{Object}` **data** *(optional)*: Custom data about the emitted event.
 
-### Method `destroy()`
+#### Method `destroy()`
 
 Destroy the `EventCollector` instance. No more events will be emitted.
 
-### Event 'done'
+#### Event 'done'
 
 Emitted for each fired event (this is, after each call to `done()`).
 * param `{Number}` **fired**: Number of fired events.
 * param `{Number}` **total**: Total number of required events to fire.
 * param `{Object}` **data**: The same custom data as provided in the `done()` method.
 
-### Event 'alldone'
+#### Event 'alldone'
 
 Emitted when all the required events have fired.
 * param `{Number}` **total**: Total number of required events to fire.
 
-### Event 'timeout'
+#### Event 'timeout'
 
 Emitted if the given timeout expires before all the required events have fired.
 * param `{Number}` **fired**: Number of fired events.
@@ -137,13 +139,16 @@ Emitted if the given timeout expires before all the required events have fired.
 
 *IMPORTANT:* New 'done' events after the timeout will still be emitted unless the user calls `destroy()`.
 
-### Event 'error'
+#### Event 'error'
 
 Emitted in case of error. For example, when expecting 2 events and calling `done()` more than twice.
 * param `{Error}` **error**
 
 
 ## Release History
+
+### 0.1.2 (2014-10-23)
+* Complete documentation.
 
 ### 0.1.1 (2014-10-23)
 * Added a browserified file for using the library into Web applications.
