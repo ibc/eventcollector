@@ -8,21 +8,21 @@ Sometimes one needs to wait for various events to be emitted before doing someth
 
 ## Install in Node
 
-```
+```bash
 $ npm install eventcollector
 ```
 
 ## Install with Bower
 
-```
+```bash
 $ bower install eventcollector
 ```
 
-## Manual installation for browser apps
+## Manual installation for Browser apps
 
 Take the browserified file at `build/eventcollector.bundle.js` and include it in your HTML:
 
-```
+```html
 <script src='js/eventcollector.bundle.js'></script>
 ```
 
@@ -33,7 +33,7 @@ The browserified file exports the `window.eventcollector` function.
 
 ### In Node
 
-```
+```js
 // We expect 2 events.
 var ec = require('eventcollector')(2);
 
@@ -65,7 +65,9 @@ produces:
 ```
 event 1 of 2 emitted
 event description: event #1
-... (1 second)
+
+... (1 second) ...
+
 event 2 of 2 emitted
 event description: event #2
 all the required 2 events have been emitted
@@ -73,7 +75,7 @@ all the required 2 events have been emitted
 
 ### In the Browser
 
-```
+```html
 <script src='js/eventcollector.bundle.js'></script>
 
 <script>
@@ -91,14 +93,14 @@ all the required 2 events have been emitted
 ### Function `eventcollector(total, timeout)`
 
 In Node:
-```
+```js
 var eventcollector = require('eventcollector');
 
 var ec = eventcollector(total, timeout);
 ```
 
 In the Browser:
-```
+```js
 var ec = window.eventcollector(total, timeout);
 ```
 
