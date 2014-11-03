@@ -144,6 +144,9 @@ Emitted if the given timeout expires before all the required events have fired.
 
 ## Release History
 
+### 0.1.4 (2014-11-03)
+* Make test units work on Windows (use `grunt-contrib-nodeunit`).
+
 ### 0.1.3 (2014-10-24)
 * Remove 'error' event by ensuring `done()` is ignored once all the required events have been emitted.
 

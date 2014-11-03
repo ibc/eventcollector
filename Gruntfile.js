@@ -39,6 +39,13 @@ module.exports = function(grunt) {
       test:    files.test
     },
 
+    nodeunit: {
+      all: files.test,
+      options: {
+        reporter: 'default'
+      }
+    },
+
     browserify: {
       bundle: {
         files: bundle_files,
@@ -53,24 +60,11 @@ module.exports = function(grunt) {
 
   // Load Grunt plugins.
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-browserify');
 
   // Tasks.
-  grunt.registerTask('test', function() {
-    var done = this.async();  // This is an async task.
-    var exec = require('child_process').exec;
-    var child;
-
-    child = exec(pkg.scripts.test, function(error, stdout, stderr) {
-      if (error) {
-        console.error(stderr);
-        done(false);
-      }
-
-      console.log(stdout);
-      done(true);
-    });
-  });
+  grunt.registerTask('test', [ 'nodeunit:all' ]);
   grunt.registerTask('lint',    [ 'jshint' ]);
   grunt.registerTask('default', [ 'lint', 'test', 'browserify' ]);
 };
