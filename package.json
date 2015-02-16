@@ -1,6 +1,6 @@
 {
   "name": "eventcollector",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Node/JavaScript library for collecting multiple events into a single one.",
   "author": "Iñaki Baz Castillo <ibc@aliax.net>",
   "license": "MIT",
@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-jshint": "~0.11.0",
     "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-browserify": "~3.1.0"
+    "grunt-browserify": "~3.3.0"
   }
 }

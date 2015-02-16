@@ -8,7 +8,7 @@ module.exports = function(grunt) {
   var pkg = grunt.file.readJSON('package.json');
   var bundle_files = {};
 
-  bundle_files['build/' + pkg.name + '.bundle.js'] = [ pkg.main ];
+  bundle_files['dist/' + pkg.name + '.bundle.js'] = [ pkg.main ];
 
   grunt.initConfig({
     jshint: {

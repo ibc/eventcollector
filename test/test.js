@@ -110,5 +110,45 @@ module.exports = {
     setTimeout(function() {
       test.done();
     }, 150);
+  },
+
+  'collect data from events': function(test) {
+    var ec = eventcollector_fn(2);
+    // Container to store each event data.
+    var eventsData = {
+      event1: null,
+      event2: null
+    };
+    // Expected data.
+    var expectedData = {
+      event1: 'FIRST EVENT DATA',
+      event2: 'SECOND EVENT DATA'
+    };
+
+    ec.on('done', function(fired, total, data) {
+      // Store data in the appropriate key of eventsData.
+      eventsData[data.eventName] = data.eventData;
+    });
+
+    ec.on('alldone', function() {
+      test.deepEqual(eventsData, expectedData);
+      test.done();
+    });
+
+    // Emit event1.
+    process.nextTick(function() {
+      ec.done({
+        eventName: 'event1',
+        eventData: 'FIRST EVENT DATA'
+      });
+    });
+
+    // Emit event2.
+    process.nextTick(function() {
+      ec.done({
+        eventName: 'event2',
+        eventData: 'SECOND EVENT DATA'
+      });
+    });
   }
 };
